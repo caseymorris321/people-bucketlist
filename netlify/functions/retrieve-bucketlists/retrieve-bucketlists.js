@@ -11,8 +11,8 @@ async function connectToDatabase() {
     console.log('Using cached database instance');
     return cachedDb;
   }
-  
-  const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+  const client = await MongoClient.connect(uri);
   const db = client.db(dbName);
   
   cachedDb = db;
@@ -26,7 +26,7 @@ exports.handler = async (event, context) => {
     const db = await connectToDatabase();
     const collection = db.collection(collectionName);
     const bucketLists = await collection.find({}).limit(10).toArray();
-    
+
     return {
       statusCode: 200,
       headers: {
@@ -38,7 +38,6 @@ exports.handler = async (event, context) => {
     
   } catch (error) {
     console.error('An error occurred while connecting to MongoDB', error);
-    
     return {
       statusCode: 500,
       body: JSON.stringify({ message: 'Failed to connect to the database' })
