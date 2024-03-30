@@ -1,6 +1,6 @@
 {
   "name": "portfolio-frontend",
-  "version": "2023",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@formcarry/react": "^1.0.4",
