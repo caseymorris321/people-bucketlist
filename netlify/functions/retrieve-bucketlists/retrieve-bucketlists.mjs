@@ -23,6 +23,10 @@ const handler = async (event) => {
         return {
             statusCode: 500,
             body: JSON.stringify({ message: error.message }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*', // Adjust as per your CORS policy
+            },
         };
     }
 };
