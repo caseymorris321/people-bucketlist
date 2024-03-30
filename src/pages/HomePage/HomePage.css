@@ -1,0 +1,30 @@
+.about-app {
+    max-width: 800px; 
+    margin: 50px auto; 
+    padding: 20px;
+  }
+  
+  .about-app h3 {
+    text-align: center;
+    margin-bottom: 30px; 
+  }
+  
+  .about-app p {
+    text-align: justify; 
+    margin-bottom: 20px; 
+  }
+  
+  .about-app dl {
+    padding-left: 20px;
+  }
+  
+  .about-app dt {
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .about-app dd {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+  

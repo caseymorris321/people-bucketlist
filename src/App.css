@@ -1,0 +1,509 @@
+/*  ===== MOBILE styles (reside at the top and are inherited by all devices) ===== */
+/*  ===== See tablet, desktop, and print @media queries at the bottom. */
+
+/*   ----- Imports  -----  */
+/* @import 'node_modules/modern-normalize/modern-normalize.css';  npm install modern-normalize  Resets elements for browser consistency.  https://www.npmjs.com/package/modern-normalize */
+/* @import "component1.css";   Component-specific stylesheets, if any.   */
+/* @import url(//fonts.googleapis.com/css?family=Font+Name); Add fonts from a hosted services like Google Fonts.   */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&display=swap");
+
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+/*   ----- Variables  -----  */
+:root {
+  --darkBlue: hsla(211.7, 28.3%, 49.8%, 0.75);
+  --lightBlue: hsl(208, 59%, 86%);
+  --darkCyan: hsl(203.8, 26.4%, 35.7%);
+  --lightCyan: hsl(196.2, 50%, 89.8%);
+  --teal: hsl(184.8, 16.3%, 30%);
+}
+
+/*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+
+body {
+  /* Can alternatively define in html {}. */
+  background: url("images/mountains-bg.JPG") no-repeat center center fixed;
+  background-size: cover;
+
+  background-color: var(--teal);
+  color: var(--lightBlue);
+  font-family: "Merriweather", serif;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 900px;
+  line-height: 1.5;
+}
+
+/*  ----- Page layout blocks -----  */
+header {
+  border-bottom: 2px solid var(--darkCyan);
+}
+header a {
+  text-decoration: none;
+}
+header,
+main,
+footer {
+  padding: 2% 1% 1% 1%;
+  margin: 0;
+  background-color: var(--darkCyan);
+  text-align: center;
+}
+header {
+  background-color: var(--darkBlue);
+  text-align: center;
+}
+
+header img {
+  width: 100px;
+  height: auto;
+}
+main {
+  background-color: var(--teal);
+  padding: 10px;
+  text-align: left;
+}
+section {
+  color: var(--darkCyan);
+  background-color: var(--lightCyan);
+  padding: 3% 6%;
+}
+article {
+}
+
+#staffArticle {
+  float: left;
+  width: 70%;
+  padding: 1%;
+}
+c1 {
+}
+#topic2 {
+}
+div {
+}
+
+aside {
+  float: right;
+  border: 3px solid var(--darkBlue);
+  padding: 1%;
+}
+footer {
+}
+
+/* ----- Anchors ----- Text links */
+a {
+  color: var(--teal);
+}
+a:link {
+}
+a:hover {
+  color: var(--darkBlue);
+}
+a:active {
+}
+a:visited {
+}
+
+
+/*  ----- Navigation ----- Override text links for navigation only.  */
+nav {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+nav a {
+  position: relative;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 15px 20px;
+  margin: 0 5px;
+  border-radius: 10px;
+  background-color: var(--teal);
+  border-right: 3px solid var(--lightCyan);
+  color: var(--lightCyan);
+}
+nav a:hover {
+  color: var(--lightBlue);
+  border-top: 3px solid var(--lightCyan);
+}
+.local a {
+  border: none;
+  background-color: var(--darkCyan);
+  padding: 10px 15px;
+  margin: 1px;
+}
+
+/*  -----  Typography  ----- */
+p {
+}
+
+br {
+}
+ol,
+ul,
+dl {
+}
+li {
+}
+dt {
+}
+dd {
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
+  margin-top: 10px;
+}
+h1 {
+  color: var(--lightBlue);
+}
+h2 {
+  color: var(--darkBlue);
+  border-bottom: 3px solid var(--teal);
+  text-align: center;
+}
+h3 {
+}
+h4 {
+}
+h5 {
+}
+h6 {
+}
+
+abbr {
+}
+acronym {
+}
+address {
+}
+blockquote {
+}
+q {
+}
+cite {
+}
+em {
+}
+hr {
+}
+mark {
+}
+s {
+}
+span {
+}
+strong {
+}
+sub {
+}
+sup {
+}
+time {
+}
+
+/*  ----- Coding or instructional typography ----- */
+pre {
+}
+code {
+}
+kbd {
+}
+samp {
+}
+var {
+}
+del {
+}
+ins {
+}
+
+/*  ----- Table ----- */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+table img {
+  width: 50px;
+  height: auto;
+  border: 1px solid black;
+}
+table i {
+  font-size: 18px;
+}
+caption {
+  padding: 1% 0;
+  border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+thead {
+  height: 40px;
+  border-bottom: 1px solid gray;
+}
+tbody {
+}
+tfoot {
+}
+tr {
+}
+tr td {
+  border-bottom: 1px solid gray;
+  min-width: 100px;
+  padding: 1%;
+}
+tr th {
+  padding: 1%;
+}
+th,
+td {
+}
+tr:nth-child(even) {
+  background-color: var(--lightBlue);
+}
+th {
+}
+td {
+}
+th:nth-child(3) {
+  width: 100px;
+}
+th:nth-child(4) {
+  width: 100px;
+}
+th:nth-child(5) {
+  width: 100px;
+}
+
+td:nth-child(1) {
+}
+td:nth-child(2) {
+}
+colgroup {
+}
+data {
+}
+datalist {
+}
+#logTable {
+  border-collapse: collapse;
+  position: relative;
+  max-width: 100%;
+  table-layout: fixed;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+#logTable input[type="text"],
+#logTable textarea,
+#logTable select,
+#logTable input[type="date"] {
+  width: 100%;
+}
+input[type="number"] {
+  width: 30px;
+}
+button[type="wait"] {
+  position: absolute;
+  bottom: 10px;
+}
+
+/*  ----- Form ----- */
+form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+fieldset {
+  border: 2px solid var(--darkCyan);
+  margin-top: 1%;
+  padding: 2%;
+}
+legend {
+  color: var(--teal);
+  font-size: 110%;
+  font-weight: bold;
+}
+label {
+  display: block;
+  margin-top: 3%;
+  position: relative;
+}
+button,
+input,
+select,
+texarea {
+  font-size: 110%;
+  padding: 2%;
+  font-family: inherit;
+}
+button{
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 12px 24px; 
+  color: white;
+  background-color: var(--darkBlue);
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+  outline: none; 
+  font-size: 1rem;
+  font-weight: 500; 
+}
+
+button:hover {
+  
+  transform: scale(1.1); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  outline: none; 
+}
+
+button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+  transform: translateY(2px);
+}
+fieldset#additionalinfo input:hover {
+  cursor: pointer;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 95%;
+}
+
+#amount {
+  width: 22%;
+}
+textarea {
+  height: 100px;
+}
+select {
+  color: var(--darkCyan);
+}
+optgroup {
+}
+option {
+}
+label.required:after {
+  content: " *";
+  color: red;
+  position: absolute;
+  top: -12px;
+  left: 100%;
+}
+*:required {
+  border: 2px solid green;
+}
+*::placeholder {
+  color: var(--teal);
+  font-size: 80%;
+}
+
+output {
+}
+meter {
+}
+progress {
+}
+
+/* ----- Media ----- */
+
+
+svg {
+}
+picture {
+}
+source {
+}
+iframe {
+}
+video {
+}
+audio {
+}
+embed {
+}
+object {
+}
+
+/*  ----- Classes for alignment, positioning, widths, grids, embellishments, and animation -----  */
+.image-gallery-image {
+}
+
+.image-gallery-fullscreen .image-gallery-image {
+}
+
+.gallery {
+}
+
+.floatright {
+}
+.floatleft {
+}
+.center-middle {
+}
+
+.ten {
+}
+.twenty {
+}
+.thirty {
+}
+.forty {
+}
+.fifty {
+}
+.sixty {
+}
+.seventy {
+}
+.eighty {
+}
+
+.radius {
+}
+.circle {
+}
+.boxshadow {
+}
+.tshadow {
+}
+.gradient {
+}
+.shape {
+}
+
+@keyframes App-logo {
+}
+
+/*   ===== TABLET  media query overrides mobile styles ===== */
+@media all and (min-width: 600px) {
+
+}
+
+@media (max-width: 600px) {
+  nav a {
+      padding: 8px;
+      margin: 0 2px;
+      font-size: max(7px, 2vw);
+      white-space: nowrap;
+  }
+}
+
+/*   ===== DESKTOP  media query overrides mobile and tablet styles ===== */
+@media all and (min-width: 1080px) {
+}
+
+/*   ===== PRINT  media query overrides previous styles =====  */
+@media print {
+}

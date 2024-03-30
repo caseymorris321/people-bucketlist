@@ -1,0 +1,63 @@
+.profile-card {
+    background-color: white;
+    width: 350px; 
+    padding: 30px;
+    margin: 0 auto;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .skills-list li {
+    background-color: var(--lightBlue);
+    margin: 5px;
+    padding: 10px 15px;
+    border-radius: 20px;
+  }
+  
+  .resume-button {
+    background-color: var(--darkCyan); 
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 80%; 
+    display: inline-block; 
+    text-decoration: none; 
+  }
+  
+  .cv-button:hover {
+    background-color: var(--teal); 
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.8em;
+  }
+  
+  p {
+    margin: 5px 0;
+    font-size: 1.1em;
+  }
+  
