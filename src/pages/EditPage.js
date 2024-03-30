@@ -98,7 +98,7 @@ export const EditPage = ({ bucketList }) => {
                 <label htmlFor="category">
                   <select
                     name="category"
-                    // value={category}
+                    value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option value="Personal Growth">Personal Growth</option>
