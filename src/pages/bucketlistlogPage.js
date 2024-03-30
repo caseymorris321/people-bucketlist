@@ -10,8 +10,6 @@ function LogPage({ setBucketList }) {
   // Use state to bring in the data
   const [bucketLists, setBucketLists] = useState([]);
 
-
-
   // Fetch all bucket lists
   const loadBucketLists = async () => {
     try {

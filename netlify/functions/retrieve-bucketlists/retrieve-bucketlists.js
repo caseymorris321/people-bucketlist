@@ -1,34 +1,47 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient } = require('mongodb');
 
-// Create a new MongoClient
-const mongoClient = new MongoClient(process.env.MONGODB_URI);
+let uri = process.env.MONGODB_URI;
+let dbName = process.env.MONGODB_DATABASE;
+let collectionName = process.env.MONGODB_COLLECTION;
 
-// Create a connection promise that can be reused across function invocations
-const clientPromise = mongoClient.connect();
+let cachedDb = null;
 
-const handler = async (event) => {
-    try {
-        // Await the connection promise
-        const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
-        // Get the collection
-        const collection = database.collection(process.env.MONGODB_COLLECTION);
-        // Perform the query and limit results
-        const results = await collection.find({}).limit(10).toArray();
-        return {
-            statusCode: 200,
-            body: JSON.stringify(results),
-        };
-    } catch (error) {
-        // Improved error handling: return the error message
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ message: error.message }),
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*', // Adjust as per your CORS policy
-            },
-        };
-    }
+async function connectToDatabase() {
+  if (cachedDb && cachedDb.serverConfig.isConnected()) {
+    console.log('Using cached database instance');
+    return cachedDb;
+  }
+  
+  const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  const db = client.db(dbName);
+  
+  cachedDb = db;
+  return db;
+}
+
+exports.handler = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
+
+  try {
+    const db = await connectToDatabase();
+    const collection = db.collection(collectionName);
+    const bucketLists = await collection.find({}).limit(10).toArray();
+    
+    return {
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*' // Adjust according to your CORS policy
+      },
+      body: JSON.stringify(bucketLists)
+    };
+    
+  } catch (error) {
+    console.error('An error occurred while connecting to MongoDB', error);
+    
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Failed to connect to the database' })
+    };
+  }
 };
-
-module.exports = { handler };
