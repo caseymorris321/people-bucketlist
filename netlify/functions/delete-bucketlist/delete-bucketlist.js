@@ -2,7 +2,7 @@ require('dotenv').config();
 const { MongoClient } = require("mongodb");
 
 const mongoClient = new MongoClient(process.env.MONGODB_URI);
-const { ObjectId } = require("mongodb"); // Import ObjectId separately
+const { ObjectId } = require("mongodb"); 
 
 const handler = async (event) => {
     const { id } = event.queryStringParameters;
@@ -12,10 +12,10 @@ const handler = async (event) => {
     }
 
     try {
-        await mongoClient.connect(); // Connect to MongoDB
+        await mongoClient.connect(); 
         const database = mongoClient.db(process.env.MONGODB_DATABASE);
         const collection = database.collection(process.env.MONGODB_COLLECTION);
-        const result = await collection.deleteOne({ _id: new ObjectId(id) }); // Create an instance of ObjectId using 'new'
+        const result = await collection.deleteOne({ _id: new ObjectId(id) }); 
 
         if (result.deletedCount === 1) {
             return {
@@ -37,7 +37,7 @@ const handler = async (event) => {
             body: JSON.stringify({ Error: 'Failed to delete the Bucket List item.' })
         };
     } finally {
-        await mongoClient.close(); // Close MongoDB connection
+        await mongoClient.close(); 
     }
 }
 

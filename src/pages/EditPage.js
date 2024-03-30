@@ -14,7 +14,7 @@ export const EditPage = ({ bucketList }) => {
   const navigate = useNavigate();
 
   const editBucketList = async () => {
-    const response = await fetch("/.netlify/functions/update-bucketlist", {
+    const response = await fetch(`/.netlify/functions/update-bucketlist?id=${bucketList._id}`, {
       method: "PUT",
       body: JSON.stringify({
         title: title,
@@ -98,7 +98,7 @@ export const EditPage = ({ bucketList }) => {
                 <label htmlFor="category">
                   <select
                     name="category"
-                    value={category}
+                    // value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     <option value="Personal Growth">Personal Growth</option>

@@ -269,6 +269,7 @@ tr th {
 }
 th,
 td {
+
 }
 tr:nth-child(even) {
   background-color: var(--lightBlue);
@@ -303,7 +304,14 @@ datalist {
   max-width: 100%;
   table-layout: fixed;
   box-sizing: border-box;
-  word-wrap: break-word;
+  th {
+    padding: 1%;
+  }
+  td {
+    font-size: 0.8rem;
+    padding: 1%;
+  }
+
 }
 #logTable input[type="text"],
 #logTable textarea,

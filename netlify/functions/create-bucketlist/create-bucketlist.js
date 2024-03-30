@@ -1,46 +1,34 @@
 require('dotenv').config();
 const { MongoClient } = require("mongodb");
 
-const mongoClient = new MongoClient(process.env.MONGODB_URI);
-const clientPromise = mongoClient.connect();
+const uri = process.env.MONGODB_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const handler = async (event) => {
-    if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Method Not Allowed' };
-    }
-
+exports.handler = async (event) => {
     try {
-        const database = (await clientPromise).db(process.env.MONGODB_DATABASE);
+        await client.connect();
+        const database = client.db(process.env.MONGODB_DATABASE);
         const collection = database.collection(process.env.MONGODB_COLLECTION);
-        const data = JSON.parse(event.body);
-        const insertedItem = await collection.insertOne({
-            title: data.title,
-            description: data.description,
-            targetDate: new Date(data.targetDate),
-            category: data.category,
-            achieved: data.achieved,
-            priority: data.priority
-        });
 
-        if (insertedItem.insertedCount === 1) {
+        if (event.httpMethod === 'POST') {
+            const data = JSON.parse(event.body);
+            const result = await collection.insertOne(data);
             return {
                 statusCode: 201,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(insertedItem.ops[0])
+                body: event.body, // Pass the event body directly
             };
         } else {
             return {
-                statusCode: 500,
-                body: JSON.stringify({ error: 'Failed to create a new Bucket List item.' })
+                statusCode: 405,
+                body: JSON.stringify({ error: 'Method Not Allowed' }),
             };
         }
     } catch (error) {
-        console.error(error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to create a new Bucket List item.' }),
+            body: JSON.stringify({ error: error.toString() }),
         };
+    } finally {
+        await client.close();
     }
 };
-
-module.exports = { handler };

@@ -32,16 +32,23 @@ function LogPage({ setBucketList }) {
 
   // Delete a single bucket list
   const onDeleteBucketList = async (id) => {
-    try {
-      const response = await fetch(`/.netlify/functions/delete-bucketlist?id=${id}`, {
-        method: "DELETE"
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    // Confirm with the user before deletion
+    const userConfirmed = window.confirm('Are you sure you want to delete this bucket list item?');
+  
+    if (userConfirmed) {
+      try {
+        const response = await fetch(`/.netlify/functions/delete-bucketlist?id=${id}`, {
+          method: "DELETE"
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        loadBucketLists(); 
+      } catch (error) {
+        console.error(`Failed to delete bucket list with ID = ${id}:`, error);
       }
-      loadBucketLists(); // Reload bucket lists after deletion
-    } catch (error) {
-      console.error(`Failed to delete bucket list with ID = ${id}:`, error);
+    } else {
+      console.log('User canceled the delete operation.');
     }
   };
 

@@ -3,13 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FaBitbucket } from "react-icons/fa";
 import TableHead from "../components/TableHead.js";
 
-// Change the icons, function names, and parameters
-// to fit your portfolio topic and schema.
-
 export const CreatePage = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [targetDate, setTargetDate] = useState();
+  const [targetDate, setTargetDate] = useState(""); 
   const [category, setCategory] = useState("Other");
   const [achieved, setAchieved] = useState(false);
   const [priority, setPriority] = useState(1);
@@ -17,10 +14,23 @@ export const CreatePage = () => {
   const navigate = useNavigate();
 
   const addBucketList = async () => {
+    if (!title) {
+      alert('Please fill in the title of the bucket list item.');
+      return; 
+    }
+    if (!description) {
+      alert('Please fill in the description of the bucket list item.');
+      return; 
+    }
+    if (!targetDate) {
+      alert('Please fill in the target date.');
+      return; 
+    }
+    
     const newBucketList = {
       title,
       description,
-      targetDate,
+      targetDate: new Date(targetDate), // Convert to Date object
       category,
       achieved,
       priority,
@@ -33,6 +43,7 @@ export const CreatePage = () => {
         "Content-Type": "application/json",
       },
     });
+
     if (response.status === 201) {
       alert(`Bucket list item added successfully.`);
     } else {
@@ -93,7 +104,6 @@ export const CreatePage = () => {
                     placeholder="Target date of the bucket list"
                     value={targetDate}
                     onChange={(e) => setTargetDate(e.target.value)}
-                    pattern="\d{2}-\d{2}-\d{2}"
                     id="targetDate"
                     required
                   />
@@ -111,9 +121,7 @@ export const CreatePage = () => {
                     <option value="Personal Growth">Personal Growth</option>
                     <option value="Health">Health</option>
                     <option value="Career">Career</option>
-                    <option value="Other">
-                      Other
-                    </option>
+                    <option value="Other">Other</option>
                   </select>
                 </label>
               </td>
@@ -123,7 +131,6 @@ export const CreatePage = () => {
                   <input
                     type="checkbox"
                     checked={achieved}
-                    placeholder="If the bucket list idea has been achieved"
                     onChange={(e) => setAchieved(e.target.checked)}
                     id="achieved"
                   />
@@ -145,7 +152,7 @@ export const CreatePage = () => {
               </td>
 
               <td>
-                <button type="wait" onClick={addBucketList}>
+                <button type="button" onClick={addBucketList}>
                   Save
                 </button>
               </td>
