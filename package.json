@@ -2,7 +2,6 @@
   "name": "portfolio-frontend",
   "version": "2023",
   "private": true,
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "@formcarry/react": "^1.0.4",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,7 +11,6 @@
     "express-async-handler": "^1.2.0",
     "mongodb": "^6.5.0",
     "nodemailer-react": "^1.0.2",
-    "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
@@ -20,6 +18,9 @@
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   },
   "scripts": {
     "start": "react-scripts start",
