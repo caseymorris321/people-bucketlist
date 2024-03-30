@@ -1,2 +1,5 @@
 [build.environment]
-NODE_VERSION = "14"
+   NODE_VERSION = "14"
+
+[functions]
+   node_bundler = "esbuild"
