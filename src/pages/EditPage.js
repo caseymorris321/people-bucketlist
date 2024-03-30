@@ -14,6 +14,19 @@ export const EditPage = ({ bucketList }) => {
   const navigate = useNavigate();
 
   const editBucketList = async () => {
+    if (!title) {
+      alert('Please fill in the title of the bucket list item.');
+      return; 
+    }
+    if (!description) {
+      alert('Please fill in the description of the bucket list item.');
+      return; 
+    }
+    if (!targetDate) {
+      alert('Please fill in the target date.');
+      return; 
+    }
+
     const response = await fetch(`/.netlify/functions/update-bucketlist?id=${bucketList._id}`, {
       method: "PUT",
       body: JSON.stringify({
